@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-100">
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <img src="img/e-learning logo.png" alt="e-learning-logo" class="h-10">
+                <h1 class="text-xl font-semibold ml-2">SMA AL HAMIDIYAH</h1>
+            </div>
+        </div>
+    </header>
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="w-64 bg-blue-800 min-h-screen text-white pt-4">
+            <nav class="p-4">
+                <ul class="space-y-2">
+                    <!-- Dashboard -->
+                    <li class="p-3 bg-blue-700 rounded">
+                        <a href="dashboard.html" class="flex items-center">
+                            <i class="fas fa-tachometer-alt mr-2"></i>
+                            Dashboard
+                        </a>
+                    </li>
+
+                    <!-- Materi dengan Submenu -->
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <div class="flex items-center justify-between">
+                            <!-- Link Materi -->
+                            <a href="materi.html" class="flex items-center flex-grow">
+                                <i class="fas fa-book mr-2"></i>
+                                Materi
+                            </a>
+                            <!-- Tombol Dropdown terpisah -->
+                            <button onclick="toggleSubmenu(event, 'submenu-materi')" class="ml-2 focus:outline-none">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <!-- Submenu -->
+                        <ul class="mt-2 pl-4 hidden space-y-2" id="submenu-materi">
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="download-materi.html" class="flex items-center">
+                                    <i class="fas fa-download mr-2"></i>
+                                    Download Materi
+                                </a>
+                            </li>
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="form-uploud-materi.html" class="flex items-center">
+                                    <i class="fas fa-upload mr-2"></i>
+                                    Form Upload Materi
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Tugas -->
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <div class="flex items-center justify-between">
+                            <!-- Link Tugas -->
+                            <a href="tugas.html" class="flex items-center flex-grow">
+                                <i class="fas fa-tasks mr-2"></i>
+                                Tugas
+                            </a>
+                            <!-- Tombol Dropdown terpisah -->
+                            <button onclick="toggleSubmenu(event, 'submenu-tugas')" class="ml-2 focus:outline-none">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <!-- Submenu -->
+                        <ul class="mt-2 pl-4 hidden space-y-2" id="submenu-tugas">
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="daftar-tugas.html" class="flex items-center">
+                                    <i class="fas fa-list-ul mr-2"></i>
+                                    Daftar Tugas
+                                </a>
+                            </li>
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="form-pengumpulan-tugas.html" class="flex items-center">
+                                    <i class="fas fa-upload mr-2"></i>
+                                    Pengumpulan Tugas
+                                </a>
+                            </li>
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="riwayat-tugas.html" class="flex items-center">
+                                    <i class="fas fa-history mr-2"></i>
+                                    Riwayat Tugas
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Tambahkan script ini jika belum ada -->
+                    <script>
+                        function toggleSubmenu(event, submenuId) {
+                            event.stopPropagation();
+                            const submenu = document.getElementById(submenuId);
+                            const chevron = event.currentTarget.querySelector('.fas.fa-chevron-down');
+
+                            if (submenu) {
+                                submenu.classList.toggle('hidden');
+                                // Rotate chevron when submenu is toggled
+                                chevron.style.transform = submenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+                            }
+                        }
+
+                        // Optional: Close submenu when clicking outside
+                        document.addEventListener('click', function (event) {
+                            const submenus = document.querySelectorAll('[id^="submenu-"]');
+                            const chevrons = document.querySelectorAll('.fas.fa-chevron-down');
+
+                            submenus.forEach((submenu, index) => {
+                                if (!submenu.contains(event.target) &&
+                                    !event.target.closest('.hover\\:bg-blue-700')) {
+                                    submenu.classList.add('hidden');
+                                    chevrons[index].style.transform = 'rotate(0deg)';
+                                }
+                            });
+                        });
+
+                        // Add transition for smooth rotation
+                        document.querySelectorAll('.fas.fa-chevron-down').forEach(chevron => {
+                            chevron.style.transition = 'transform 0.2s ease-in-out';
+                        });
+                    </script>
+
+                    <!-- Tambahkan style ini di head -->
+                    <style>
+                        .fas.fa-chevron-down {
+                            transition: transform 0.2s ease-in-out;
+                        }
+                    </style>
+
+                    <!-- Notifikasi -->
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <a href="notifikasi.html" class="flex items-center">
+                            <i class="fas fa-bell mr-2"></i>
+                            Notifikasi
+                        </a>
+                    </li>
+
+                    <!-- Profil -->
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <a href="profil.html" class="flex items-center">
+                            <i class="fas fa-user mr-2"></i>
+                            Profil
+                        </a>
+                    </li>
+
+                    <!-- Logout -->
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <a href="logout.html" class="flex items-center">
+                            <i class="fa-solid fa-right-from-bracket mr-2"></i>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- JavaScript -->
+        <script>
+            function toggleSubmenu(event, submenuId) {
+                event.stopPropagation(); // Hanya menghentikan event bubbling
+                const submenu = document.getElementById(submenuId);
+                if (submenu) {
+                    submenu.classList.toggle('hidden');
+                }
+            }
+        </script>
+
+        <!-- Content -->
+        <div class="p-6">
+            <div class="grid grid-cols-3 gap-6 mb-6">
+                <!-- Data Guru Card -->
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <i class="fas fa-user-tie text-2xl text-blue-500"></i>
+                            <h2 class="text-lg font-semibold mt-2">DATA GURU</h2>
+                        </div>
+                        <a href="data-guru.html" class="text-blue-500 hover:text-blue-700">
+                            LIHAT DETAIL <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Data Siswa Card -->
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <i class="fas fa-users text-2xl text-green-500"></i>
+                            <h2 class="text-lg font-semibold mt-2">DATA SISWA</h2>
+                        </div>
+                        <a href="data-siswa.html" class="text-blue-500 hover:text-blue-700">
+                            LIHAT DETAIL <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Kelola Materi Card -->
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <i class="fas fa-book text-2xl text-yellow-500"></i>
+                            <h2 class="text-lg font-semibold mt-2">KELOLA MATERI</h2>
+                        </div>
+                        <a href="materi.html" id="detailButton" class="text-blue-500 hover:text-blue-700">
+                            LIHAT DETAIL <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                        <script>
+                            document.getElementById('detailButton').addEventListener('click', function () {
+                                window.location.href = 'materi.html';
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-6">
+                <!-- Laporan Pembelajaran Card -->
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <i class="fas fa-file-alt text-2xl text-purple-500"></i>
+                            <h2 class="text-lg font-semibold mt-2">LAPORAN PEMBELAJARAN</h2>
+                        </div>
+                        <a href="laporan-pembelajaran.html" class="text-blue-500 hover:text-blue-700">
+                            LIHAT DETAIL <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Monitoring Aktivitas Card -->
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <i class="fas fa-chart-line text-2xl text-red-500"></i>
+                            <h2 class="text-lg font-semibold mt-2">MONITORING AKTIVITAS</h2>
+                        </div>
+                        <a href="monitoring-aktivitas.html" class="text-blue-500 hover:text-blue-700">
+                            LIHAT DETAIL <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Kelola Tugas Card -->
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <i class="fas fa-tasks text-2xl text-orange-500"></i>
+                            <h2 class="text-lg font-semibold mt-2">KELOLA TUGAS</h2>
+                        </div>
+                        <a href="tugas.html" class="text-blue-500 hover:text-blue-700">
+                            LIHAT DETAIL <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

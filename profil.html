@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-100">
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto max-w-7xl px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="img/e-learning logo.png" alt="e-learning-logo" class="h-10"
+                    onerror="this.src='default-logo.png';">
+                <h1 class="text-xl font-semibold ml-2">SMA AL HAMIDIYAH</h1>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex h-screen">
+        <!-- Sidebar (sama seperti sebelumnya) -->
+
+        <div class="w-64 bg-blue-800 min-h-screen text-white pt-4">
+            <nav class="p-4">
+                <ul class="space-y-2">
+                    <!-- Dashboard -->
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <a href="dashboard.html" class="flex items-center">
+                            <i class="fas fa-tachometer-alt mr-2"></i>
+                            Dashboard
+                        </a>
+                    </li>
+
+                    <!-- Materi dengan Submenu -->
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <div class="flex items-center justify-between">
+                            <!-- Link Materi -->
+                            <a href="materi.html" class="flex items-center flex-grow">
+                                <i class="fas fa-book mr-2"></i>
+                                Materi
+                            </a>
+                            <!-- Tombol Dropdown terpisah -->
+                            <button onclick="toggleSubmenu(event, 'submenu-materi')" class="ml-2 focus:outline-none">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <!-- Submenu -->
+                        <ul class="mt-2 pl-4 hidden space-y-2" id="submenu-materi">
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="download-materi.html" class="flex items-center">
+                                    <i class="fas fa-download mr-2"></i>
+                                    Download Materi
+                                </a>
+                            </li>
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="form-uploud-materi.html" class="flex items-center">
+                                    <i class="fas fa-upload mr-2"></i>
+                                    Form Upload Materi
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Tugas -->
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <div class="flex items-center justify-between">
+                            <!-- Link Tugas -->
+                            <a href="tugas.html" class="flex items-center flex-grow">
+                                <i class="fas fa-tasks mr-2"></i>
+                                Tugas
+                            </a>
+                            <!-- Tombol Dropdown terpisah -->
+                            <button onclick="toggleSubmenu(event, 'submenu-tugas')" class="ml-2 focus:outline-none">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <!-- Submenu -->
+                        <ul class="mt-2 pl-4 hidden space-y-2" id="submenu-tugas">
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="daftar-tugas.html" class="flex items-center">
+                                    <i class="fas fa-list-ul mr-2"></i>
+                                    Daftar Tugas
+                                </a>
+                            </li>
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="form-pengumpulan-tugas.html" class="flex items-center">
+                                    <i class="fas fa-upload mr-2"></i>
+                                    Pengumpulan Tugas
+                                </a>
+                            </li>
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="riwayat-tugas.html" class="flex items-center">
+                                    <i class="fas fa-history mr-2"></i>
+                                    Riwayat Tugas
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Tambahkan script ini jika belum ada -->
+                    <script>
+                        function toggleSubmenu(event, submenuId) {
+                            event.stopPropagation();
+                            const submenu = document.getElementById(submenuId);
+                            const chevron = event.currentTarget.querySelector('.fas.fa-chevron-down');
+
+                            if (submenu) {
+                                submenu.classList.toggle('hidden');
+                                // Rotate chevron when submenu is toggled
+                                chevron.style.transform = submenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+                            }
+                        }
+
+                        // Optional: Close submenu when clicking outside
+                        document.addEventListener('click', function (event) {
+                            const submenus = document.querySelectorAll('[id^="submenu-"]');
+                            const chevrons = document.querySelectorAll('.fas.fa-chevron-down');
+
+                            submenus.forEach((submenu, index) => {
+                                if (!submenu.contains(event.target) &&
+                                    !event.target.closest('.hover\\:bg-blue-700')) {
+                                    submenu.classList.add('hidden');
+                                    chevrons[index].style.transform = 'rotate(0deg)';
+                                }
+                            });
+                        });
+
+                        // Add transition for smooth rotation
+                        document.querySelectorAll('.fas.fa-chevron-down').forEach(chevron => {
+                            chevron.style.transition = 'transform 0.2s ease-in-out';
+                        });
+                    </script>
+
+                    <!-- Tambahkan style ini di head -->
+                    <style>
+                        .fas.fa-chevron-down {
+                            transition: transform 0.2s ease-in-out;
+                        }
+                    </style>
+
+                    <!-- Notifikasi -->
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <a href="notifikasi.html" class="flex items-center">
+                            <i class="fas fa-bell mr-2"></i>
+                            Notifikasi
+                        </a>
+                    </li>
+
+                    <!-- Profil -->
+                    <li class="p-3 bg-blue-700 rounded">
+                        <a href="profil.html" class="flex items-center">
+                            <i class="fas fa-user mr-2"></i>
+                            Profil
+                        </a>
+                    </li>
+
+                    <!-- Logout -->
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <a href="logout.html" class="flex items-center">
+                            <i class="fa-solid fa-right-from-bracket mr-2"></i>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- JavaScript -->
+        <script>
+            function toggleSubmenu(event, submenuId) {
+                event.stopPropagation(); // Hanya menghentikan event bubbling
+                const submenu = document.getElementById(submenuId);
+                if (submenu) {
+                    submenu.classList.toggle('hidden');
+                }
+            }
+        </script>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-8">
+            <h2 class="text-2xl font-bold mb-6">Profil Siswa</h2>
+
+            <div class="bg-white shadow rounded-lg p-6">
+                <div class="flex items-center space-x-6 mb-4">
+                    <img class="h-24 w-24 rounded-full" src="img/user-icons.png" alt="Foto Profil">
+                    <div>
+                        <h3 class="text-xl font-semibold">Ahmad Fauzi</h3>
+                        <p class="text-gray-600">Kelas XI IPA 2</p>
+                        <p class="text-gray-600">NIS: 123456</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-lg font-semibold mb-2">Informasi Pribadi</h4>
+                        <p><strong>Tanggal Lahir:</strong> 15 Agustus 2006</p>
+                        <p><strong>Jenis Kelamin:</strong> Laki-laki</p>
+                        <p><strong>Alamat:</strong> Jl. Pendidikan No. 123, Jakarta</p>
+                        <p><strong>No. Telepon:</strong> 081234567890</p>
+                        <p><strong>Email:</strong> ahmad.fauzi@example.com</p>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-2">Informasi Akademik</h4>
+                        <p><strong>Wali Kelas:</strong> Ibu Siti Aminah</p>
+                        <p><strong>Tahun Masuk:</strong> 2022</p>
+                        <p><strong>Prestasi:</strong> Juara 2 Olimpiade Sains Tingkat Kota</p>
+                        <p><strong>Ekstrakurikuler:</strong> Pramuka, Klub Sains</p>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <h4 class="text-lg font-semibold mb-2">Nilai Rata-rata per Semester</h4>
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Semester</th>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Nilai Rata-rata</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">Semester 1</td>
+                                <td class="px-6 py-4 whitespace-nowrap">85.5</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">Semester 2</td>
+                                <td class="px-6 py-4 whitespace-nowrap">87.2</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mt-6">
+                    <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                        Edit Profil
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

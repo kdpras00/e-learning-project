@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .fas.fa-chevron-down {
+            transition: transform 0.2s ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto max-w-7xl px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="img/e-learning logo.png" alt="e-learning-logo" class="h-10"
+                    onerror="this.src='default-logo.png';">
+                <h1 class="text-xl font-semibold ml-2">SMA AL HAMIDIYAH</h1>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="w-64 bg-blue-800 min-h-screen text-white pt-4">
+            <nav class="p-4">
+                <ul class="space-y-2">
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <a href="dashboard.html" class="flex items-center">
+                            <i class="fas fa-tachometer-alt mr-2"></i>
+                            Dashboard
+                        </a>
+                    </li>
+
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <div class="flex items-center justify-between">
+                            <a href="materi.html" class="flex items-center flex-grow">
+                                <i class="fas fa-book mr-2"></i>
+                                Materi
+                            </a>
+                            <button onclick="toggleSubmenu('submenu-materi')" class="ml-2 focus:outline-none">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <ul class="mt-2 pl-4 hidden space-y-2" id="submenu-materi">
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="download-materi.html" class="flex items-center">
+                                    <i class="fas fa-download mr-2"></i>
+                                    Download Materi
+                                </a>
+                            </li>
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="form-upload-materi.html" class="flex items-center">
+                                    <i class="fas fa-upload mr-2"></i>
+                                    Form Upload Materi
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <div class="flex items-center justify-between">
+                            <a href="tugas.html" class="flex items-center flex-grow">
+                                <i class="fas fa-tasks mr-2"></i>
+                                Tugas
+                            </a>
+                            <button onclick="toggleSubmenu('submenu-tugas')" class="ml-2 focus:outline-none">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <ul class="mt-2 pl-4 hidden space-y-2" id="submenu-tugas">
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="daftar-tugas.html" class="flex items-center">
+                                    <i class="fas fa-list-ul mr-2"></i>
+                                    Daftar Tugas
+                                </a>
+                            </li>
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="form-pengumpulan-tugas.html" class="flex items-center">
+                                    <i class="fas fa-upload mr-2"></i>
+                                    Pengumpulan Tugas
+                                </a>
+                            </li>
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="riwayat-tugas.html" class="flex items-center">
+                                    <i class="fas fa-history mr-2"></i>
+                                    Riwayat Tugas
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <a href="notifikasi.html" class="flex items-center">
+                            <i class="fas fa-bell mr-2"></i>
+                            Notifikasi
+                        </a>
+                    </li>
+
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <a href="profil.html" class="flex items-center">
+                            <i class="fas fa-user mr-2"></i>
+                            Profil
+                        </a>
+                    </li>
+
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <a href="logout.html" class="flex items-center">
+                            <i class="fa-solid fa-right-from-bracket mr-2"></i>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+
+        <!-- Main Content -->
+        <div class="flex-1 p-8 overflow-auto">
+            <div>
+                <h2 class="text-2xl font-bold mb-6">Monitoring Aktivitas</h2>
+
+                <!-- Filter and Search Section -->
+                <div class="mb-6 bg-white p-4 rounded-lg shadow">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Tipe Aktivitas</label>
+                            <select class="w-full px-4 py-2 border rounded-lg">
+                                <option value="">Semua Aktivitas</option>
+                                <option value="login">Login</option>
+                                <option value="materi">Akses Materi</option>
+                                <option value="tugas">Pengumpulan Tugas</option>
+                                <option value="ujian">Aktivitas Ujian</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Pengguna</label>
+                            <select class="w-full px-4 py-2 border rounded-lg">
+                                <option value="">Semua Pengguna</option>
+                                <option value="siswa">Siswa</option>
+                                <option value="guru">Guru</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Tanggal Mulai</label>
+                            <input type="date" class="w-full px-4 py-2 border rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Tanggal Akhir</label>
+                            <input type="date" class="w-full px-4 py-2 border rounded-lg">
+                        </div>
+                    </div>
+                    <div class="mt-4 flex justify-between items-center">
+                        <input type="text" placeholder="Cari aktivitas..." class="px-4 py-2 border rounded-lg w-64">
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+                            <i class="fas fa-search mr-2"></i>Filter
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Activity Statistics -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-blue-100 text-blue-500">
+                                <i class="fas fa-users fa-2x"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-gray-500">Pengguna Aktif</p>
+                                <h3 class="text-2xl font-bold">245</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-green-100 text-green-500">
+                                <i class="fas fa-book-reader fa-2x"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-gray-500">Akses Materi</p>
+                                <h3 class="text-2xl font-bold">1,234</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-yellow-100 text-yellow-500">
+                                <i class="fas fa-tasks fa-2x"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-gray-500">Tugas Dikumpulkan</p>
+                                <h3 class="text-2xl font-bold">856</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-purple-100 text-purple-500">
+                                <i class="fas fa-clock fa-2x"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-gray-500">Rata-rata Waktu</p>
+                                <h3 class="text-2xl font-bold">45m</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity Log Table -->
+                <div class="bg-white rounded-lg shadow overflow-hidden">
+                    <div class="p-4 border-b flex justify-between items-center">
+                        <h3 class="text-lg font-semibold">Log Aktivitas</h3>
+                        <div class="flex space-x-2">
+                            <button class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                            <button class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-filter"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <table class="min-w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Waktu
+                                </th>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Pengguna
+                                </th>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Tipe
+                                </th>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Aktivitas
+                                </th>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Status
+                                </th>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Detail
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">2023-12-05 09:30:15</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-8 w-8">
+                                            <img class="h-8 w-8 rounded-full" src="img/user-icons.png"
+                                                alt="User avatar">
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">Ahmad Rizki</div>
+                                            <div class="text-sm text-gray-500">Siswa</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span
+                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                        Login
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-gray-900">Login ke sistem</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span
+                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                        Sukses
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <button class="text-blue-600 hover:text-blue-900">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">2023-12-05 09:45:22</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-8 w-8">
+                                            <img class="h-8 w-8 rounded-full" src="img/user-icons.png"
+                                                alt="User avatar">
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">Siti Aminah</div>
+                                            <div class="text-sm text-gray-500">Guru</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span
+                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                        Upload Materi
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-gray-900">Mengunggah materi Matematika Bab 3</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span
+                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                        Sukses
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <button class="text-blue-600 hover:text-blue-900">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">2023-12-05 10:15:30</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-8 w-8">
+                                            <img class="h-8 w-8 rounded-full" src="img/user-icons.png"
+                                                alt="User avatar">
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">Budi Santoso</div>
+                                            <div class="text-sm text-gray-500">Siswa</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span
+                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
+                                        Submit Tugas
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-gray-900">Mengumpulkan tugas Fisika Bab 2</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span
+                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                        Terlambat
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <button class="text-blue-600 hover:text-blue-900">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Pagination -->
+                    <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+                        <div class="flex-1 flex justify-between sm:hidden">
+                            <a href="#"
+                                class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                                Previous
+                            </a>
+                            <a href="#"
+                                class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                                Next
+                            </a>
+                        </div>
+                        <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                            <div>
+                                <p class="text-sm text-gray-700">
+                                    Showing
+                                    <span class="font-medium">1</span>
+                                    to
+                                    <span class="font-medium">10</span>
+                                    of
+                                    <span class="font-medium">97</span>
+                                    results
+                                </p>
+                            </div>
+                            <div>
+                                <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
+                                    aria-label="Pagination">
+                                    <!-- Pagination buttons -->
+                                    <a href="#"
+                                        class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                        <span class="sr-only">Previous</span>
+                                        <i class="fas fa-chevron-left"></i>
+                                    </a>
+                                    <a href="#"
+                                        class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">1</a>
+                                    <a href="#"
+                                        class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">2</a>
+                                    <a href="#"
+                                        class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">3</a>
+                                    <a href="#"
+                                        class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">3</a>
+                                    <span
+                                        class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-gray-50 text-sm font-medium text-gray-700">...</span>
+                                    <a href="#"
+                                        class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">8</a>
+                                    <a href="#"
+                                        class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">9</a>
+                                    <a href="#"
+                                        class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">10</a>
+                                    <a href="#"
+                                        class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                        <span class="sr-only">Next</span>
+                                        <i class="fas fa-chevron-right"></i>
+                                    </a>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Export and Refresh Buttons -->
+                <div class="mt-6 flex justify-end space-x-4">
+                    <button class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">
+                        <i class="fas fa-sync-alt mr-2"></i>Refresh Data
+                    </button>
+                    <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+                        <i class="fas fa-file-excel mr-2"></i>Export Excel
+                    </button>
+                    <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
+                        <i class="fas fa-file-pdf mr-2"></i>Export PDF
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Script untuk toggle submenu -->
+        <script>
+            function toggleSubmenu(id) {
+                const submenu = document.getElementById(id);
+                const chevron = event.currentTarget.querySelector('.fas.fa-chevron-down');
+
+                if (submenu.classList.contains('hidden')) {
+                    submenu.classList.remove('hidden');
+                    chevron.style.transform = 'rotate(180deg)';
+                } else {
+                    submenu.classList.add('hidden');
+                    chevron.style.transform = 'rotate(0deg)';
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', function () {
+                document.querySelectorAll('[id^="submenu-"]').forEach(function (submenu) {
+                    submenu.addEventListener('click', function (event) {
+                        event.stopPropagation();
+                    });
+                });
+
+                document.querySelectorAll('.fas.fa-chevron-down').forEach(function (chevron) {
+                    chevron.style.transition = 'transform 0.2s ease-in-out';
+                });
+            });
+        </script>
+</body>
+
+</html>

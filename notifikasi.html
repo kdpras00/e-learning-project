@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Styles for scrolling */
+        html,
+        body {
+
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .bg-blue-800 * {
+            color: white;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f1f1f1;
+        }
+
+        /* Toggle Switch */
+        .dot {
+            transition: all 0.3s ease-in-out;
+        }
+
+        input:checked~.dot {
+            transform: translateX(100%);
+        }
+
+        input:checked+.block {
+            background-color: #2563eb;
+        }
+
+        /* Toast Animation */
+        @keyframes slideIn {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .toast-enter {
+            animation: slideIn 0.3s ease-out;
+        }
+
+        /* Notification Badge Animation */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .notification-badge {
+            animation: pulse 2s infinite;
+        }
+
+        .fas.fa-chevron-down {
+            transition: transform 0.2s ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 h-screen flex flex-col overflow-hidden">
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto max-w-7xl px-4 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <img src="img/e-learning logo.png" alt="e-learning-logo" class="h-10"
+                    onerror="this.src='default-logo.png';">
+                <h1 class="text-xl font-semibold ml-2">SMA AL HAMIDIYAH</h1>
+            </div>
+        </div>
+    </header>
+    <div class="flex flex-1 overflow-hidden">
+        <!-- Sidebar -->
+        <div class="w-64 bg-blue-800 flex-shrink-0 pt-4">
+            <nav class="h-full overflow-y-auto p-4">
+                <ul class="space-y-2">
+                    <!-- Dashboard -->
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <a href="dashboard.html" class="flex items-center">
+                            <i class="fas fa-tachometer-alt mr-2"></i>
+                            Dashboard
+                        </a>
+                    </li>
+
+                    <!-- Materi dengan Submenu -->
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <div class="flex items-center justify-between">
+                            <!-- Link Materi -->
+                            <a href="materi.html" class="flex items-center flex-grow">
+                                <i class="fas fa-book mr-2"></i>
+                                Materi
+                            </a>
+                            <!-- Tombol Dropdown terpisah -->
+                            <button onclick="toggleSubmenu(event, 'submenu-materi')" class="ml-2 focus:outline-none">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <!-- Submenu -->
+                        <ul class="mt-2 pl-4 hidden space-y-2" id="submenu-materi">
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="download-materi.html" class="flex items-center">
+                                    <i class="fas fa-download mr-2"></i>
+                                    Download Materi
+                                </a>
+                            </li>
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="form-uploud-materi.html" class="flex items-center">
+                                    <i class="fas fa-upload mr-2"></i>
+                                    Form Upload Materi
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Tugas -->
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <div class="flex items-center justify-between">
+                            <!-- Link Tugas -->
+                            <a href="tugas.html" class="flex items-center flex-grow">
+                                <i class="fas fa-tasks mr-2"></i>
+                                Tugas
+                            </a>
+                            <!-- Tombol Dropdown terpisah -->
+                            <button onclick="toggleSubmenu(event, 'submenu-tugas')" class="ml-2 focus:outline-none">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <!-- Submenu -->
+                        <ul class="mt-2 pl-4 hidden space-y-2" id="submenu-tugas">
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="daftar-tugas.html" class="flex items-center">
+                                    <i class="fas fa-list-ul mr-2"></i>
+                                    Daftar Tugas
+                                </a>
+                            </li>
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="form-pengumpulan-tugas.html" class="flex items-center">
+                                    <i class="fas fa-upload mr-2"></i>
+                                    Pengumpulan Tugas
+                                </a>
+                            </li>
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="riwayat-tugas.html" class="flex items-center">
+                                    <i class="fas fa-history mr-2"></i>
+                                    Riwayat Tugas
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Notifikasi -->
+                    <li class="p-3 bg-blue-700 rounded">
+                        <a href="notifikasi.html" class="flex items-center">
+                            <i class="fas fa-bell mr-2"></i>
+                            Notifikasi
+                        </a>
+                    </li>
+
+                    <!-- Profil -->
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <a href="profil.html" class="flex items-center">
+                            <i class="fas fa-user mr-2"></i>
+                            Profil
+                        </a>
+                    </li>
+
+                    <!-- Logout -->
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <a href="logout.html" class="flex items-center">
+                            <i class="fa-solid fa-right-from-bracket mr-2"></i>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- Main Content -->
+        <div class="flex-1 overflow-y-auto">
+            <div class="p-8">
+                <div class="max-w-4xl mx-auto">
+                    <!-- Header Section -->
+                    <div class="flex justify-between items-center mb-6">
+                        <h1 class="text-2xl font-bold">Pengaturan Notifikasi</h1>
+                        <div class="relative">
+                            <span
+                                class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center notification-badge">
+                                3
+                            </span>
+                            <button class="p-2 hover:bg-gray-100 rounded-full">
+                                <i class="fas fa-bell text-gray-600"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Notification Settings Card -->
+                    <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+                        <h2 class="text-lg font-semibold mb-4">Pengaturan Email Notifikasi</h2>
+
+                        <!-- Email Settings -->
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email Notifikasi</label>
+                            <input type="email" class="w-full px-3 py-2 border rounded-md" value="student@example.com">
+                        </div>
+
+                        <!-- Toggle Notifications -->
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <p class="font-medium">Aktifkan Notifikasi Email</p>
+                                <p class="text-sm text-gray-500">Terima notifikasi untuk tugas dan pengumuman penting
+                                </p>
+                            </div>
+                            <label class="flex items-center cursor-pointer">
+                                <div class="relative">
+                                    <input type="checkbox" id="toggleNotif" class="sr-only" checked>
+                                    <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
+                                    <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition">
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Notification Types -->
+                        <div class="space-y-4 mb-6">
+                            <h3 class="font-medium">Jenis Notifikasi</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <!-- Deadline Notifications -->
+                                <div class="flex items-start space-x-3">
+                                    <input type="checkbox" id="deadline"
+                                        class="form-checkbox h-5 w-5 text-blue-600 mt-1" checked>
+                                    <div>
+                                        <label for="deadline" class="font-medium">Pengingat Deadline</label>
+                                        <p class="text-sm text-gray-500">Notifikasi sebelum deadline tugas</p>
+                                    </div>
+                                </div>
+
+                                <!-- New Task Notifications -->
+                                <div class="flex items-start space-x-3">
+                                    <input type="checkbox" id="newTask" class="form-checkbox h-5 w-5 text-blue-600 mt-1"
+                                        checked>
+                                    <div>
+                                        <label for="newTask" class="font-medium">Tugas Baru</label>
+                                        <p class="text-sm text-gray-500">Notifikasi saat ada tugas baru</p>
+                                    </div>
+                                </div>
+
+                                <!-- Feedback Notifications -->
+                                <div class="flex items-start space-x-3">
+                                    <input type="checkbox" id="feedback"
+                                        class="form-checkbox h-5 w-5 text-blue-600 mt-1" checked>
+                                    <div>
+                                        <label for="feedback" class="font-medium">Feedback Guru</label>
+                                        <p class="text-sm text-gray-500">Notifikasi saat menerima feedback</p>
+                                    </div>
+                                </div>
+
+                                <!-- System Notifications -->
+                                <div class="flex items-start space-x-3">
+                                    <input type="checkbox" id="system" class="form-checkbox h-5 w-5 text-blue-600 mt-1"
+                                        checked>
+                                    <div>
+                                        <label for="system" class="font-medium">Pengumuman Sistem</label>
+                                        <p class="text-sm text-gray-500">Pembaruan dan pengumuman penting</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Notification Frequency -->
+                        <div class="mb-6">
+                            <h3 class="font-medium mb-2">Frekuensi Pengingat</h3>
+                            <select class="w-full border rounded-md px-3 py-2">
+                                <option value="1">1 hari sebelum deadline</option>
+                                <option value="3">3 hari sebelum deadline</option>
+                                <option value="7">1 minggu sebelum deadline</option>
+                            </select>
+                        </div>
+
+                        <!-- Save Button -->
+                        <div class="flex justify-end">
+                            <button onclick="saveNotificationSettings()"
+                                class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                Simpan Pengaturan
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Notification History -->
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <h2 class="text-lg font-semibold mb-4">Riwayat Notifikasi</h2>
+                        <div class="space-y-4" id="notificationHistory">
+                            <!-- Notification items -->
+                            <div class="flex items-start space-x-4 p-3 hover:bg-gray-50 rounded-lg">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-bell text-yellow-500"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-medium">Deadline Tugas Matematika</p>
+                                    <p class="text-sm text-gray-600">Tugas Matematika - Bab 1 Aljabar akan berakhir
+                                        dalam 24 jam</p>
+                                    <p class="text-xs text-gray-400 mt-1">2 jam yang lalu</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4 p-3 hover:bg-gray-50 rounded-lg">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-book text-blue-500"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-medium">Tugas Baru Ditambahkan</p>
+                                    <p class="text-sm text-gray-600">Tugas baru Bahasa Indonesia telah ditambahkan</p>
+                                    <p class="text-xs text-gray-400 mt-1">1 hari yang lalu</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle Submenu Function
+        function toggleSubmenu(event, submenuId) {
+            event.stopPropagation();
+            const submenu = document.getElementById(submenuId);
+            const chevron = event.currentTarget.querySelector('.fas.fa-chevron-down');
+
+            if (submenu) {
+                submenu.classList.toggle('hidden');
+                chevron.style.transform = submenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+            }
+        }
+
+        // Close submenu when clicking outside
+        document.addEventListener('click', function (event) {
+            const submenus = document.querySelectorAll('[id^="submenu-"]');
+            const chevrons = document.querySelectorAll('.fas.fa-chevron-down');
+
+            submenus.forEach((submenu, index) => {
+                if (!submenu.contains(event.target) &&
+                    !event.target.closest('.hover\\:bg-blue-700')) {
+                    submenu.classList.add('hidden');
+                    chevrons[index].style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+
+        // Save Notification Settings
+        function saveNotificationSettings() {
+            const settings = {
+                email: document.querySelector('input[type="email"]').value,
+                enabled: document.getElementById('toggleNotif').checked,
+                notifications: {
+                    deadline: document.getElementById('deadline').checked,
+                    newTask: document.getElementById('newTask').checked,
+                    feedback: document.getElementById('feedback').checked,
+                    system: document.getElementById('system').checked
+                },
+                frequency: document.querySelector('select').value
+            };
+
+            // Simulasi penyimpanan
+            console.log('Saving settings:', settings);
+            showToast('Pengaturan berhasil disimpan!');
+            localStorage.setItem('notificationSettings', JSON.stringify(settings));
+        }
+
+        // Show Toast Notification
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg toast-enter';
+            toast.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(100%)';
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 300);
+            }, 3000);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function () {
+            // Load saved settings
+            const savedSettings = localStorage.getItem('notificationSettings');
+            if (savedSettings) {
+                const settings = JSON.parse(savedSettings);
+                document.querySelector('input[type="email"]').value = settings.email;
+                document.getElementById('toggleNotif').checked = settings.enabled;
+                document.getElementById('deadline').checked = settings.notifications.deadline;
+                document.getElementById('newTask').checked = settings.notifications.newTask;
+                document.getElementById('feedback').checked = settings.notifications.feedback;
+                document.getElementById('system').checked = settings.notifications.system;
+                document.querySelector('select').value = settings.frequency;
+            }
+
+            // Request notification permission
+            if ("Notification" in window) {
+                Notification.requestPermission();
+            }
+        });
+
+        // Toggle notification checkboxes based on main toggle
+        document.getElementById('toggleNotif').addEventListener('change', function (e) {
+            const isEnabled = e.target.checked;
+            const checkboxes = document.querySelectorAll('.form-checkbox');
+
+            checkboxes.forEach(checkbox => {
+                checkbox.disabled = !isEnabled;
+                if (!isEnabled) {
+                    checkbox.checked = false;
+                }
+            });
+
+            showToast(isEnabled ? 'Notifikasi diaktifkan' : 'Notifikasi dinonaktifkan');
+        });
+    </script>
+</body>
+
+</html>

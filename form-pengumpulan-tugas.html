@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-100">
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <img src="img/e-learning logo.png" alt="e-learning-logo" class="h-10">
+                <h1 class="text-xl font-semibold ml-2">SMA AL HAMIDIYAH</h1>
+            </div>
+        </div>
+    </header>
+    <!-- Sidebar -->
+    <div class="flex">
+        <div class="w-64 bg-blue-800 min-h-screen text-white pt-4">
+            <nav class="p-4">
+                <ul class="space-y-2">
+                    <!-- Dashboard -->
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <a href="dashboard.html" class="flex items-center">
+                            <i class="fas fa-tachometer-alt mr-2"></i>
+                            Dashboard
+                        </a>
+                    </li>
+
+                    <!-- Materi dengan Submenu -->
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <div class="flex items-center justify-between">
+                            <!-- Link Materi -->
+                            <a href="materi.html" class="flex items-center flex-grow">
+                                <i class="fas fa-book mr-2"></i>
+                                Materi
+                            </a>
+                            <!-- Tombol Dropdown terpisah -->
+                            <button onclick="toggleSubmenu(event, 'submenu-materi')" class="ml-2 focus:outline-none">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <!-- Submenu -->
+                        <ul class="mt-2 pl-4 hidden space-y-2" id="submenu-materi">
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="download-materi.html" class="flex items-center">
+                                    <i class="fas fa-download mr-2"></i>
+                                    Download Materi
+                                </a>
+                            </li>
+                            <li class="p-2  bg-blue-600 rounded">
+                                <a href="form-uploud-materi.html" class="flex items-center">
+                                    <i class="fas fa-upload mr-2"></i>
+                                    Form Upload Materi
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Tugas -->
+                    <!-- <li class="p-3 hover:bg-blue-700 rounded">
+                        <a href="tugas.html" class="flex items-center">
+                            <i class="fas fa-tasks mr-2"></i>
+                            Tugas
+                        </a>
+                    </li> -->
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <div class="flex items-center justify-between">
+                            <!-- Link Tugas -->
+                            <a href="tugas.html" class="flex items-center flex-grow">
+                                <i class="fas fa-tasks mr-2"></i>
+                                Tugas
+                            </a>
+                            <!-- Tombol Dropdown terpisah -->
+                            <button onclick="toggleSubmenu(event, 'submenu-tugas')" class="ml-2 focus:outline-none">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <!-- Submenu -->
+                        <ul class="mt-2 pl-4 hidden space-y-2" id="submenu-tugas">
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="daftar-tugas.html" class="flex items-center">
+                                    <i class="fas fa-list-ul mr-2"></i>
+                                    Daftar Tugas
+                                </a>
+                            </li>
+                            <li class="p-2 bg-blue-600 rounded">
+                                <a href="form-pengumpulan-tugas.html" class="flex items-center">
+                                    <i class="fas fa-upload mr-2"></i>
+                                    Pengumpulan Tugas
+                                </a>
+                            </li>
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="riwayat-tugas.html" class="flex items-center">
+                                    <i class="fas fa-history mr-2"></i>
+                                    Riwayat Tugas
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Tambahkan script ini jika belum ada -->
+                    <script>
+                        function toggleSubmenu(event, submenuId) {
+                            event.stopPropagation();
+                            const submenu = document.getElementById(submenuId);
+                            const chevron = event.currentTarget.querySelector('.fas.fa-chevron-down');
+
+                            if (submenu) {
+                                submenu.classList.toggle('hidden');
+                                // Rotate chevron when submenu is toggled
+                                chevron.style.transform = submenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+                            }
+                        }
+
+                        // Optional: Close submenu when clicking outside
+                        document.addEventListener('click', function (event) {
+                            const submenus = document.querySelectorAll('[id^="submenu-"]');
+                            const chevrons = document.querySelectorAll('.fas.fa-chevron-down');
+
+                            submenus.forEach((submenu, index) => {
+                                if (!submenu.contains(event.target) &&
+                                    !event.target.closest('.hover\\:bg-blue-700')) {
+                                    submenu.classList.add('hidden');
+                                    chevrons[index].style.transform = 'rotate(0deg)';
+                                }
+                            });
+                        });
+
+                        // Add transition for smooth rotation
+                        document.querySelectorAll('.fas.fa-chevron-down').forEach(chevron => {
+                            chevron.style.transition = 'transform 0.2s ease-in-out';
+                        });
+                    </script>
+
+                    <!-- Tambahkan style ini di head -->
+                    <style>
+                        .fas.fa-chevron-down {
+                            transition: transform 0.2s ease-in-out;
+                        }
+                    </style>
+
+                    <!-- Notifikasi -->
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <a href="notifikasi.html" class="flex items-center">
+                            <i class="fas fa-bell mr-2"></i>
+                            Notifikasi
+                        </a>
+                    </li>
+
+                    <!-- Profil -->
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <a href="profil.html" class="flex items-center">
+                            <i class="fas fa-user mr-2"></i>
+                            Profil
+                        </a>
+                    </li>
+
+                    <!-- Logout -->
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <a href="logout.html" class="flex items-center">
+                            <i class="fa-solid fa-right-from-bracket mr-2"></i>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- JavaScript -->
+        <script>
+            function toggleSubmenu(event, submenuId) {
+                event.stopPropagation(); // Hanya menghentikan event bubbling
+                const submenu = document.getElementById(submenuId);
+                if (submenu) {
+                    submenu.classList.toggle('hidden');
+                }
+            }
+        </script>
+
+        <!-- Main Content -->
+        <!-- Main Content -->
+        <div class="flex-1 p-8">
+            <div class="max-w-2xl mx-auto">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h2 class="text-2xl font-bold mb-6">Pengumpulan Tugas</h2>
+
+                    <form action="#" method="POST" enctype="multipart/form-data">
+                        <!-- Nama Tugas -->
+                        <div class="mb-6">
+                            <label for="task-title" class="block text-sm font-medium text-gray-700 mb-2">
+                                Nama Tugas
+                            </label>
+                            <input type="text" id="task-title" name="task-title" readonly
+                                class="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md"
+                                value="Tugas Matematika - Bab 1 Aljabar">
+                        </div>
+
+                        <!-- Nama Siswa -->
+                        <div class="mb-6">
+                            <label for="student-name" class="block text-sm font-medium text-gray-700 mb-2">
+                                Nama Siswa
+                            </label>
+                            <input type="text" id="student-name" name="student-name" readonly
+                                class="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md" value="John Doe">
+                        </div>
+
+                        <!-- Kelas -->
+                        <div class="mb-6">
+                            <label for="class" class="block text-sm font-medium text-gray-700 mb-2">
+                                Kelas
+                            </label>
+                            <input type="text" id="class" name="class" readonly
+                                class="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md" value="XI IPA 1">
+                        </div>
+
+                        <!-- Deadline -->
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Deadline Pengumpulan
+                            </label>
+                            <div class="flex items-center text-red-500">
+                                <i class="far fa-clock mr-2"></i>
+                                <span>10 December 2023, 23:59 WIB</span>
+                            </div>
+                        </div>
+
+                        <!-- File Upload -->
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Upload File Tugas
+                            </label>
+                            <div
+                                class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                <div class="space-y-1 text-center">
+                                    <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-3"></i>
+                                    <div class="flex text-sm text-gray-600">
+                                        <label for="file-upload"
+                                            class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
+                                            <span>Upload file tugas</span>
+                                            <input id="file-upload" name="file-upload" type="file" class="sr-only"
+                                                accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+                                        </label>
+                                        <p class="pl-1">atau drag and drop</p>
+                                    </div>
+                                    <p class="text-xs text-gray-500">
+                                        PDF, Word, atau Gambar (JPG/PNG) hingga 5MB
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Preview Area -->
+                            <div id="file-preview" class="mt-4 hidden">
+                                <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                                    <i class="fas fa-file-alt text-gray-400 mr-3"></i>
+                                    <span class="file-name text-sm text-gray-500"></span>
+                                    <button type="button" class="ml-auto text-red-500 hover:text-red-700"
+                                        onclick="removeFile()">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Catatan -->
+                        <div class="mb-6">
+                            <label for="notes" class="block text-sm font-medium text-gray-700 mb-2">
+                                Catatan (Opsional)
+                            </label>
+                            <textarea id="notes" name="notes" rows="3"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                placeholder="Tambahkan catatan untuk guru (jika ada)"></textarea>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="flex justify-end space-x-4">
+                            <button type="button"
+                                class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                Batal
+                            </button>
+                            <button type="submit"
+                                class="px-4 py-2 border border-transparent rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                                Kumpulkan Tugas
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // File Upload Preview
+            document.getElementById('file-upload').addEventListener('change', function (e) {
+                const file = e.target.files[0];
+                const filePreview = document.getElementById('file-preview');
+                const fileName = filePreview.querySelector('.file-name');
+
+                if (file) {
+                    // Validasi tipe file
+                    const allowedTypes = [
+                        'application/pdf',
+                        'application/msword',
+                        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                        'image/jpeg',
+                        'image/png'
+                    ];
+
+                    if (!allowedTypes.includes(file.type)) {
+                        alert('Format file tidak didukung. Harap upload file PDF, Word, atau Gambar (JPG/PNG).');
+                        this.value = '';
+                        return;
+                    }
+
+                    // Validasi ukuran file (5MB)
+                    if (file.size > 5 * 1024 * 1024) {
+                        alert('Ukuran file terlalu besar. Maksimal 5MB.');
+                        this.value = '';
+                        return;
+                    }
+
+                    // Tampilkan preview
+                    filePreview.classList.remove('hidden');
+                    fileName.textContent = file.name;
+
+                    // Set icon berdasarkan tipe file
+                    const fileIcon = filePreview.querySelector('.fas');
+                    if (file.type === 'application/pdf') {
+                        fileIcon.className = 'fas fa-file-pdf text-red-500';
+                    } else if (file.type.includes('word')) {
+                        fileIcon.className = 'fas fa-file-word text-blue-500';
+                    } else if (file.type.includes('image')) {
+                        fileIcon.className = 'fas fa-file-image text-green-500';
+                    }
+                }
+            }
+
+            );
+
+            // Fungsi untuk menghapus file
+            function removeFile() {
+                const fileInput = document.getElementById('file-upload');
+                const filePreview = document.getElementById('file-preview');
+
+                fileInput.value = '';
+                filePreview.classList.add('hidden');
+            }
+
+            // Drag and Drop functionality
+            const dropZone = document.querySelector('.border-dashed');
+
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, preventDefaults, false);
+            });
+
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropZone.addEventListener(eventName, highlight, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, unhighlight, false);
+            });
+
+            function highlight(e) {
+                dropZone.classList.add('border-green-500', 'bg-green-50');
+            }
+
+            function unhighlight(e) {
+                dropZone.classList.remove('border-green-500', 'bg-green-50');
+            }
+
+            dropZone.addEventListener('drop', handleDrop, false);
+
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const file = dt.files[0];
+                const fileInput = document.getElementById('file-upload');
+
+                fileInput.files = dt.files;
+                // Trigger change event
+                fileInput.dispatchEvent(new Event('change'));
+            }
+
+            // Form Submit Handler
+            document.querySelector('form').addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                // Validasi file
+                const file = document.getElementById('file-upload').files[0];
+                if (!file) {
+                    alert('Mohon upload file tugas Anda');
+                    return;
+                }
+
+                // Simulasi loading state
+                const submitButton = this.querySelector('button[type="submit"]');
+                submitButton.disabled = true;
+                submitButton.innerHTML = `
+            <i class="fas fa-spinner fa-spin mr-2"></i>
+            Mengupload...
+        `;
+
+                // Simulasi upload
+                setTimeout(() => {
+                    alert('Tugas berhasil dikumpulkan!');
+                    // Reset form
+                    this.reset();
+                    removeFile();
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = 'Kumpulkan Tugas';
+
+                    // Redirect ke halaman daftar tugas (opsional)
+                    // window.location.href = 'tugas.html';
+                }, 2000);
+            });
+
+            // Set minimum date untuk input tanggal ke hari ini
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('publish-date').min = today;
+        </script>
+</body>
+
+</html>

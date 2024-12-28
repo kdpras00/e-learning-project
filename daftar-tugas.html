@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .fas.fa-chevron-down {
+            transition: transform 0.2s ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto max-w-7xl px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="img/e-learning logo.png" alt="e-learning-logo" class="h-10"
+                    onerror="this.src='default-logo.png';">
+                <h1 class="text-xl font-semibold ml-2">SMA AL HAMIDIYAH</h1>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="w-64 bg-blue-800 min-h-screen text-white pt-4">
+            <nav class="p-4">
+                <ul class="space-y-2">
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <a href="dashboard.html" class="flex items-center">
+                            <i class="fas fa-tachometer-alt mr-2"></i>
+                            Dashboard
+                        </a>
+                    </li>
+
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <div class="flex items-center justify-between">
+                            <a href="materi.html" class="flex items-center flex-grow">
+                                <i class="fas fa-book mr-2"></i>
+                                Materi
+                            </a>
+                            <button onclick="toggleSubmenu('submenu-materi')" class="ml-2 focus:outline-none">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <ul class="mt-2 pl-4 hidden space-y-2" id="submenu-materi">
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="download-materi.html" class="flex items-center">
+                                    <i class="fas fa-download mr-2"></i>
+                                    Download Materi
+                                </a>
+                            </li>
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="form-upload-materi.html" class="flex items-center">
+                                    <i class="fas fa-upload mr-2"></i>
+                                    Form Upload Materi
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <div class="flex items-center justify-between">
+                            <a href="tugas.html" class="flex items-center flex-grow">
+                                <i class="fas fa-tasks mr-2"></i>
+                                Tugas
+                            </a>
+                            <button onclick="toggleSubmenu('submenu-tugas')" class="ml-2 focus:outline-none">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <ul class="mt-2 pl-4 hidden space-y-2" id="submenu-tugas">
+                            <li class="p-2 bg-blue-600 rounded">
+                                <a href="daftar-tugas.html" class="flex items-center">
+                                    <i class="fas fa-list-ul mr-2"></i>
+                                    Daftar Tugas
+                                </a>
+                            </li>
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="form-pengumpulan-tugas.html" class="flex items-center">
+                                    <i class="fas fa-upload mr-2"></i>
+                                    Pengumpulan Tugas
+                                </a>
+                            </li>
+                            <li class="p-2 hover:bg-blue-600 rounded">
+                                <a href="riwayat-tugas.html" class="flex items-center">
+                                    <i class="fas fa-history mr-2"></i>
+                                    Riwayat Tugas
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <a href="notifikasi.html" class="flex items-center">
+                            <i class="fas fa-bell mr-2"></i>
+                            Notifikasi
+                        </a>
+                    </li>
+
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <a href="profil.html" class="flex items-center">
+                            <i class="fas fa-user mr-2"></i>
+                            Profil
+                        </a>
+                    </li>
+
+                    <li class="p-3 hover:bg-blue-700 rounded">
+                        <a href="logout.html" class="flex items-center">
+                            <i class="fa-solid fa-right-from-bracket mr-2"></i>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-8">
+            <!-- Header Section -->
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Daftar Tugas</h2>
+                <div class="flex space-x-4">
+                    <select class="border rounded-md px-3 py-2">
+                        <option value="">Semua Mata Pelajaran</option>
+                        <option value="matematika">Matematika</option>
+                        <option value="fisika">Fisika</option>
+                        <option value="biologi">Biologi</option>
+                        <option value="kimia">Kimia</option>
+                    </select>
+                    <select class="border rounded-md px-3 py-2">
+                        <option value="">Semua Status</option>
+                        <option value="belum">Belum Dikumpulkan</option>
+                        <option value="sudah">Sudah Dikumpulkan</option>
+                        <option value="terlambat">Terlambat</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Tugas Table -->
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <table class="min-w-full">
+                    <thead class="bg-blue-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-blue-500 uppercase tracking-wider">
+                                Mata Pelajaran
+                            </th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-blue-500 uppercase tracking-wider">
+                                Judul Tugas
+                            </th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-blue-500 uppercase tracking-wider">
+                                Status
+                            </th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-blue-500 uppercase tracking-wider">
+                                Deadline
+                            </th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-blue-500 uppercase tracking-wider">
+                                Nilai
+                            </th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-blue-500 uppercase tracking-wider">
+                                Aksi
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <!-- Fisika -->
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">Fisika</td>
+                            <td class="px-6 py-4">Laporan Praktikum Gerak Lurus</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span
+                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                    Sudah Dikumpulkan
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">15 Des 2023</td>
+                            <td class="px-6 py-4 whitespace-nowrap">90</td>
+                            <td class="px-6 py-4 whitespace-nowrap space-x-2">
+                                <button class="text-blue-600 hover:text-blue-900">
+                                    <i class="fas fa-eye"></i> Lihat
+                                </button>
+                            </td>
+                        </tr>
+
+                        <!-- Matematika -->
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">Matematika</td>
+                            <td class="px-6 py-4">Tugas Integral Trigonometri</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span
+                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                    Belum Dikumpulkan
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">20 Des 2023</td>
+                            <td class="px-6 py-4 whitespace-nowrap">-</td>
+                            <td class="px-6 py-4 whitespace-nowrap space-x-2">
+                                <button class="text-green-600 hover:text-green-900">
+                                    <i class="fas fa-upload"></i> Upload
+                                </button>
+                                <button class="text-blue-600 hover:text-blue-900">
+                                    <i class="fas fa-eye"></i> Detail
+                                </button>
+                            </td>
+                        </tr>
+
+                        <!-- Biologi -->
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">Biologi</td>
+                            <td class="px-6 py-4">Laporan Pengamatan Sel</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span
+                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                    Terlambat
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">10 Des 2023</td>
+                            <td class="px-6 py-4 whitespace-nowrap">75</td>
+                            <td class="px-6 py-4 whitespace-nowrap space-x-2">
+                                <button class="text-blue-600 hover:text-blue-900">
+                                    <i class="fas fa-eye"></i> Lihat
+                                </button>
+                            </td>
+                        </tr>
+
+                        <!-- Kimia -->
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">Kimia</td>
+                            <td class="px-6 py-4">Quiz Asam Basa</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span
+                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                    Sudah Dikumpulkan
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">12 Des 2023</td>
+                            <td class="px-6 py-4 whitespace-nowrap">85</td>
+                            <td class="px-6 py-4 whitespace-nowrap space-x-2">
+                                <button class="text-blue-600 hover:text-blue-900">
+                                    <i class="fas fa-eye"></i> Lihat
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-4 flex justify-between items-center">
+                <div class="text-sm text-gray-700">
+                    Menampilkan 1 - 4 dari 10 tugas
+                </div>
+                <div class="flex space-x-2">
+                    <button class="px-3 py-1 border rounded hover:bg-gray-100">Previous</button>
+                    <button class="px-3 py-1 border rounded bg-blue-500 text-white">1</button>
+                    <button class="px-3 py-1 border rounded hover:bg-gray-100">2</button>
+                    <button class="px-3 py-1 border rounded hover:bg-gray-100">3</button>
+                    <button class="px-3 py-1 border rounded hover:bg-gray-100">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function toggleSubmenu(submenuId) {
+                const submenu = document.getElementById(submenuId);
+                const chevron = submenu.previousElementSibling.querySelector('.fas.fa-chevron-down');
+
+                if (submenu) {
+                    submenu.classList.toggle('hidden');
+                    chevron.style.transform = submenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+                }
+            }
+
+            // Add event listeners to dropdown buttons
+            document.querySelectorAll('button[onclick^="toggleSubmenu"]').forEach(button => {
+                button.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    const submenuId = this.getAttribute('onclick').match(/'([^']+)'/)[1];
+                    toggleSubmenu(submenuId);
+                });
+            });
+
+            // Close submenus when clicking outside
+            document.addEventListener('click', function (event) {
+                const submenus = document.querySelectorAll('[id^="submenu-"]');
+                const chevrons = document.querySelectorAll('.fas.fa-chevron-down');
+
+                submenus.forEach((submenu, index) => {
+                    if (!submenu.contains(event.target) && !event.target.closest('.hover\\:bg-blue-700')) {
+                        submenu.classList.add('hidden');
+                        chevrons[index].style.transform = 'rotate(0deg)';
+                    }
+                });
+            });
+
+            // Add transition for smooth rotation
+            document.querySelectorAll('.fas.fa-chevron-down').forEach(chevron => {
+                chevron.style.transition = 'transform 0.2s ease-in-out';
+            });
+        });
+    </script>
+</body>
+
+</html>
